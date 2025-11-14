@@ -105,8 +105,15 @@ static struct {
 struct fmt_main fmt_DES;
 #endif
 
+char test_buf1[64];
+
 static void init(struct fmt_main *self)
 {
+	char buf2[64];
+	memmove(buf2, test_buf1, 64);
+	puts("middle point");
+	memcpy(test_buf1, buf2, 64);
+
 #if DES_BS
 	DES_bs_init(0, DES_bs_cpt);
 #if DES_bs_mt
